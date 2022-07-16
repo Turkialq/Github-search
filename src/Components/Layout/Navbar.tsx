@@ -1,0 +1,40 @@
+import { FaGithub } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+
+interface NavBar {
+    title: string
+}
+
+const Navbar = ({ title }: NavBar) => {
+    return (
+        <nav className='navbar mb12 shadow-lg bg-neutral text-neutral-content'>
+            <div className="container mx-auto">
+                <div className="flex-none px-2 mx-2">
+
+                    <FaGithub className='inline pr-2 text-3xl' />
+                    <Link to='/' className='text-lg font-bold'>
+                        {title}
+                    </Link>
+                </div>
+                <div className="flex-1 px-2 mx-2">
+                    <div className="flex justify-end">
+                        <Link to='/' className='btn btn-ghost btn-sm'>
+                            Home
+                        </Link>
+                        <Link to='/' className='btn btn-ghost btn-sm '>
+                            About
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    )
+}
+
+
+Navbar.defaultProps = {
+    title: 'Github Finder'
+}
+
+export default Navbar
