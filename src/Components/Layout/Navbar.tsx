@@ -21,7 +21,7 @@ const Navbar = ({ title }: NavBar) => {
                         <Link to='/' className='btn btn-ghost btn-sm'>
                             Home
                         </Link>
-                        <Link to='/' className='btn btn-ghost btn-sm '>
+                        <Link to='/about' className='btn btn-ghost btn-sm '>
                             About
                         </Link>
                     </div>
