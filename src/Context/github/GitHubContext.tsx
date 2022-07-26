@@ -9,11 +9,13 @@ const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_KEY
 export const GithubProvider = ({ children }: any) => {
     const intialState = {
         users: [],
-        loader: true
+        loader: false
     }
     const [state, dispatch] = useReducer(githubReducer, intialState)
 
     const fetchUsers = async () => {
+        setLoader()
+
         const response = await fetch(`${GITHUB_UL}/users`, {
             headers: {
                 Authorization: `token${GITHUB_TOKEN}`
@@ -26,8 +28,33 @@ export const GithubProvider = ({ children }: any) => {
         })
     }
 
+    const getUser = async (name: string) => {
+        const params = new URLSearchParams({
+            p: name
+        })
+
+        const user = await fetch(`${GITHUB_UL}/search/users?q=${name}`, {
+            headers: {
+                Authorization: `token${GITHUB_TOKEN}`
+            }
+        })
+
+        const { items } = await user.json()
+        console.log(items)
+        dispatch({
+            type: 'GET_USERS',
+            payload: items
+        })
+    }
+
+    const setLoader = () => {
+        dispatch({
+            type: 'SET_LOADING'
+        })
+    }
+
     return (
-        <GithubContext.Provider value={{ users: state.users, loader: state.loader, fetchUsers }}>
+        <GithubContext.Provider value={{ users: state.users, loader: state.loader, fetchUsers, getUser }}>
             {children}
         </GithubContext.Provider >
     )

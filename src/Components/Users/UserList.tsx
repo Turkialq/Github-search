@@ -1,17 +1,11 @@
-import { useEffect, useContext } from "react"
+import { useContext } from "react"
 import Spiner from "../Layout/assets/Spiner"
 import UserItem from "./UserItem"
 import GithubContext from "../../Context/github/GitHubContext"
 
 
 function UserList() {
-    const { users, loader, fetchUsers }: any = useContext(GithubContext)
-
-    useEffect(() => {
-        fetchUsers()
-
-
-    }, [])
+    const { users, loader }: any = useContext(GithubContext)
 
 
     if (!loader) {
