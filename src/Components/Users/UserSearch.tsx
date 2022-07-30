@@ -5,7 +5,7 @@ import UserList from "./UserList"
 function UserSearch() {
 
     const [user, setUser] = useState<string>("")
-    const { users, getUser }: any = useContext(GithubContext)
+    const { users, getUser, clearUser }: any = useContext(GithubContext)
 
     const handleChange = (e: any) => {
         setUser(e.target.value)
@@ -48,13 +48,15 @@ function UserSearch() {
                 </form>
             </div>
 
-            {users > 0 && <div>
-                <button
-                    className='btn btn-ghost btn-lg'
-                >
-                    Clear
-                </button>
-            </div>}
+            {users.length > 0 &&
+                <div>
+                    <button
+                        className='btn btn-ghost btn-lg' onClick={clearUser}
+                    >
+                        Clear
+                    </button>
+                </div>
+            }
         </div>
     )
 }
