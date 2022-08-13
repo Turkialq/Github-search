@@ -1,12 +1,21 @@
-import { useReducer, createContext } from "react";
+import { useReducer, createContext, ReactNode } from "react";
 import githubReducer from "./GithubReducer";
+
+type GithubProviderProps = {
+    children: ReactNode
+}
+
+type GithubContextProps = {
+    getUser: (name: string) => void
+    clearUser: () => void
+}
 
 const GithubContext = createContext({})
 
 const GITHUB_UL = process.env.REACT_APP_GITHUB_URL
 const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_KEY
 
-export const GithubProvider = ({ children }: any) => {
+export const GithubProvider = ({ children }: GithubProviderProps) => {
     const intialState = {
         users: [],
         loader: false
