@@ -6,7 +6,7 @@ import UserList from "./UserList"
 function UserSearch() {
 
     const [user, setUser] = useState<string>("")
-    const { users, getUser, clearUser }: any = useContext(GithubContext)
+    const { users, getUsers, clearUser }: any = useContext(GithubContext)
     const { setAlert }: any = useContext(AlertContext)
 
     const handleChange = (e: any) => {
@@ -21,7 +21,7 @@ function UserSearch() {
         }
         else {
             // send to an API
-            getUser(user)
+            getUsers(user)
             setUser("")
         }
     }
